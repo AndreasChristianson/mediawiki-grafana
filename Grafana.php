@@ -197,7 +197,7 @@ function renderGrafana( $input, array $args, Parser $parser ) {
 
   if ($pos > 0){
      $tmpContent=substr($grafanaContent,$pos+$COMMIT_SHIFT,$COMMIT_SEARCH_TEXT);
-     $grafanaVersion=preg_split('"', $tmpContent, 2)[0];
+     $grafanaVersion=explode('"', $tmpContent, 2)[0];
   }
 
   // -------------------------------------------
@@ -221,7 +221,7 @@ function renderGrafana( $input, array $args, Parser $parser ) {
       return $output;
   }
 
-  switch (preg_split("\.",$grafanaVersion,2)[0]) {
+  switch (explode("\.",$grafanaVersion,2)[0]) {
       case "v3": 
         $output.= Grafana_v3($param,$templateVar);
         break; 
